@@ -72,8 +72,8 @@ else
 }
 // get available book titles
 	public void printAvailableBooks(){
-        if (books.size() != 0) {
-            for (int i = 0; i < books.size(); i++) {
+        if (books.amntBooks() != 0) {
+            for (int i = 0; i < books.amntBooks(); i++) {
                 if (!books.get(i).isBorrowed())
                     System.out.println(books.get(i).getTitle());
             }
