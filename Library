@@ -4,38 +4,34 @@ public class Library {
 // name
 private String name;
 
+
 // books
-private Book[] books;
+private ArrayList<Book> books;
 
-// total amount of books
-public final int TOTAL_AMNT_BOOKS = 1000;
 
-//the actual number of books
-private int amntBooks;
 
 // requested times
-private int requestedTimes;
+private ArrayList<Integer> requestedTimes;
 
 
 // new library
 public Library(String name) {
 		this.name = name;
-		this.books = new Book[TOTAL_AMNT_BOOKS];
-		this.amntBooks = 0;
-		this.requestedTimes = new int[TOTAL_AMNT_BOOKS];
+		this.books = new Arraylist<>();
+		this.requestedTimes = new Arraylist<>();
 }
 
 // puts in books
 //not 100% sure
-public void addBook(Book)
-books[amntBooks] = newBook;
-amntBooks++;
+public void addBook(Book newBook)
+books.add(newBook)
+requestedTimes.add(0);
 
 //looks for the book
 public int findBook(String title){
 
 int foundIndex = -1;
-for (int i = 0; i < amntBooks; i++){
+for (int i = 0; i < books.size(); i++){
 	if (books[i].getTitle().equalsIgnoreCase(title)){
 		found index = i;
 		break;
@@ -50,30 +46,19 @@ return foundIndex;
 
 // borrow book
 public void borrowBook(String title) {
-	int bookIndex = -1;
-for(int i = 0; i < amntBooks; i++){
-
-if (books[i].getTitle().equalsIgnoreCase(title) 
-&& !books[i].isBorrowed()){
-
-		bookIndex = i;
-		break;
-	}
-}
-
-if (bookIndex != -1){
-	books [bookIndex].borrowed();
-	requestedTimes[bookIndex]++;
-}
-else
-{
-	System.out.println("Book is not available.");
-		}
-}
+	int bookIndex = findBook(title);
+if (bookIndex != -1 && !books.get(bookIndex).isBorrowed()) {
+        books.get(bookIndex).borrowed();
+        requestedTimes.set(bookIndex, requestedTimes.get(bookIndex) + 1);
+        } else {
+            System.out.println("Book is not available.");
+        }
+ }
+	
 // get available book titles
 	public void printAvailableBooks(){
-        if (books.amntBooks() != 0) {
-            for (int i = 0; i < books.amntBooks(); i++) {
+        if (!books.isEmpty()) {
+            for (int i = 0; i < books.size(); i++) {
                 if (!books.get(i).isBorrowed())
                     System.out.println(books.get(i).getTitle());
             }
